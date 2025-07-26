@@ -7,6 +7,17 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
+        // Create menus table
+        Schema::create('menus', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->nullable();
+            $table->string('url')->nullable();
+            $table->integer('priority')->default(0)->nullable();
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->nullableTimestamps();
+            $table->foreign('parent_id')->references('id')->on('menus')->onDelete("cascade");
+        });
+
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -120,6 +131,7 @@ return new class extends Migration {
 
     public function down(): void
     {
+        Schema::dropIfExists('menus');
         Schema::dropIfExists('categories');
         Schema::dropIfExists('news');
         Schema::dropIfExists('trainings');

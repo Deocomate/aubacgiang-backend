@@ -397,7 +397,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'root', 'root@gmail.com', NULL, '$2y$12$bXeVIM2P5poOtvXql844Ye7O4lzNx2RnXI/WitBvNT7kof785cTKu', NULL, NULL, NULL)
+(1, 'root', 'root@gmail.com', NULL, '$2y$12$bXeVIM2P5poOtvXql844Ye7O4lzNx2RnXI/WitBvNT7kof785cTKu', NULL, NULL, NULL);
 
 --
 -- Chỉ mục cho các bảng đã đổ

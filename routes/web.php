@@ -13,6 +13,8 @@ use App\Http\Controllers\KingExpressBus\Admin\ParentsCornerController;
 use App\Http\Controllers\KingExpressBus\Admin\TeacherController;
 use App\Http\Controllers\KingExpressBus\Admin\TrainingController;
 use App\Http\Controllers\KingExpressBus\Auth\AuthenticationController;
+use App\Http\Controllers\KingExpressBus\Admin\MenuController;
+
 use App\Http\Middleware\AuthenticationMiddleware;
 
 /*
@@ -43,6 +45,8 @@ Route::prefix('admin')->name("admin.")->middleware(AuthenticationMiddleware::cla
     Route::post('/contact/update', [ContactController::class, 'update'])->name('contact.update');
 
     // CRUD Resources
+    Route::resource("menus", MenuController::class);
+    Route::post('/menus/update-order', [MenuController::class, 'updateOrder'])->name('menus.updateOrder');
     Route::resource("categories", CategoryController::class)->except(['show']);
     Route::resource("news", NewsController::class)->except(['show']);
     Route::resource("training", TrainingController::class)->except(['show']);
@@ -71,6 +75,8 @@ Route::group(['prefix' => 'ckfinder', 'middleware' => ['web']], function () {
 Route::prefix('api')->group(function () {
     // Homepage
     Route::get('/homepage', [AdminController::class, 'getHomePageApi']);
+
+    Route::get('/menus', [MenuController::class, 'getMenusApi']);
 
     // Categories & News
     Route::get('/categories', [CategoryController::class, 'getCategories']);
