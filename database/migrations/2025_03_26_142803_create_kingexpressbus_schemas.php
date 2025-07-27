@@ -91,11 +91,11 @@ return new class extends Migration {
 
         Schema::create('home_page', function (Blueprint $table) {
             $table->id();
-            $table->text('banners')->unique();
+            $table->text('banners');
             $table->text('stats')->nullable();
             $table->text('fags')->nullable();
             $table->text('images')->nullable();
-            $table->text('link_youtubes')->unique();
+            $table->text('link_youtubes');
             $table->timestamps();
         });
 

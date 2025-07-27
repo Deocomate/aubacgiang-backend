@@ -32,7 +32,7 @@
                             @endforeach
                         </ul>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                            <span aria-hidden="true">×</span>
                         </button>
                     </div>
                 @endif
@@ -40,7 +40,16 @@
                 {{-- Sử dụng Blade components cho input --}}
                 <x-inputs.text label="Tên Menu" name="name" :value="old('name', $menu->name ?? '')" required/>
 
-                <x-inputs.text label="Đường dẫn (URL)" name="url" :value="old('url', $menu->url ?? '')"/>
+                {{-- <<< THAY ĐỔI Ở ĐÂY: Dùng HTML trực tiếp để bỏ "required" --}}
+                <div class="form-group">
+                    <label for="input-url">Đường dẫn (URL)</label>
+                    <input type="text" class="form-control" id="input-url" name="url"
+                           value="{{ old('url', $menu->url ?? '') }}" placeholder="Enter Đường dẫn (URL)">
+                    @error('url')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                {{-- <<< KẾT THÚC THAY ĐỔI --}}
 
                 <x-inputs.number label="Thứ tự ưu tiên" name="priority" type="number"
                                  :value="old('priority', $menu->priority ?? 0)" required/>

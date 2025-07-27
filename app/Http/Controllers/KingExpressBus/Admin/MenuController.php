@@ -117,21 +117,25 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
+        // <<< THAY ĐỔI Ở ĐÂY: Xử lý giá trị -1 trước khi validate
+        if ($request->input('parent_id') == -1) {
+            $request->merge(['parent_id' => null]);
+        }
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'url' => 'nullable|string|url|max:255',
+            'url' => 'nullable|string|max:255',
             'priority' => 'required|integer',
-            // Ensure parent_id exists in the menus table if it's not null
-            'parent_id' => 'nullable|integer',
+            // <<< THAY ĐỔI Ở ĐÂY: Thêm rule 'exists'
+            'parent_id' => 'nullable|integer|exists:menus,id',
         ]);
 
         // Set timestamps
         $validated['created_at'] = now();
         $validated['updated_at'] = now();
 
-        // Handle empty parent_id (convert empty string or 0 to null)
-        $validated['parent_id'] = $validated['parent_id'] != -1 ? $validated['parent_id'] : null;
-
+        // <<< THAY ĐỔI Ở ĐÂY: Xóa dòng xử lý không cần thiết
+        // $validated['parent_id'] = $validated['parent_id'] != -1 ? $validated['parent_id'] : null;
 
         DB::table('menus')->insert($validated);
 
@@ -202,11 +206,16 @@ class MenuController extends Controller
             abort(404);
         }
 
+        // <<< THAY ĐỔI Ở ĐÂY: Xử lý giá trị -1 trước khi validate
+        if ($request->input('parent_id') == -1) {
+            $request->merge(['parent_id' => null]);
+        }
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'url' => 'nullable|string|max:255',
             'priority' => 'required|integer',
-            // Ensure parent_id exists if not null, and prevent setting parent to self or descendant
+            // Rule 'exists' giờ sẽ hoạt động đúng vì giá trị không hợp lệ đã được chuyển thành null
             'parent_id' => [
                 'nullable',
                 'integer',
@@ -227,8 +236,8 @@ class MenuController extends Controller
         // Set timestamp
         $validated['updated_at'] = now();
 
-        // Handle empty parent_id
-        $validated['parent_id'] = !empty($validated['parent_id']) ? $validated['parent_id'] : null;
+        // <<< THAY ĐỔI Ở ĐÂY: Xóa dòng xử lý không cần thiết
+        // $validated['parent_id'] = !empty($validated['parent_id']) ? $validated['parent_id'] : null;
 
 
         DB::table('menus')->where('id', $id)->update($validated);
