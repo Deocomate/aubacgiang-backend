@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\KingExpressBus\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Traits\SlugGenerator; // <-- THÊM DÒNG NÀY
+use App\Http\Traits\SlugGenerator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
