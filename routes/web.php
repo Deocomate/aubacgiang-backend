@@ -88,6 +88,8 @@ Route::prefix('api')->group(function () {
     // Customers
     Route::post('/customers', [CustomerController::class, 'store']);
 
+    Route::get('/test_mail', [CustomerController::class, 'test_mail']);
+
     // Trainings
     Route::get('/training', [TrainingController::class, 'getTrainingListApi']);
     Route::get('/training/{slug}', [TrainingController::class, 'getTrainingDetailApi']);

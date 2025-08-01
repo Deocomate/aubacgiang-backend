@@ -89,7 +89,7 @@ class KingExpressBusSeeder extends Seeder
                 'fags' => '[{"question":"Trung tâm có lớp học thử miễn phí không?","answer":"Có, chúng tôi có các buổi học thử định kỳ. Vui lòng để lại thông tin để được tư vấn lịch học gần nhất."},{"question":"Lộ trình học cho bé được xây dựng như thế nào?","answer":"Mỗi học viên sẽ được kiểm tra đầu vào và tư vấn lộ trình cá nhân hóa để đảm bảo hiệu quả học tập tốt nhất."},{"question":"Đội ngũ giáo viên của trung tâm có trình độ như thế nào?","answer":"100% giáo viên tại AU English có bằng cấp sư phạm, chứng chỉ giảng dạy quốc tế (TESOL\\/IELTS) và nhiều năm kinh nghiệm."}]',
                 'images' => '["\\/userfiles\\/images\\/R5AT4240.jpg","\\/userfiles\\/images\\/R5AT4246.jpg","\\/userfiles\\/images\\/R5AT4255.jpg"]',
                 'link_youtubes' => '["https:\\/\\/www.youtube.com\\/watch?v=fXXcJJENN9U","https:\\/\\/www.youtube.com\\/watch?v=BaR4iCqJFWk"]',
-                'created_at' => '2025-07-21 03:53:45',
+                'created_at' => '2025-07 -21 03:53:45',
                 'updated_at' => '2025-07-21 05:40:36',
             ],
         ]);

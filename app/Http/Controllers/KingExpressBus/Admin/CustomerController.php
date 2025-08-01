@@ -196,4 +196,62 @@ class CustomerController extends Controller
             ]
         ], 201);
     }
+
+    public function test_mail(Request $request): JsonResponse
+    {
+        $validatedData = [
+            "training_id" => null,
+            "full_name_parent" => 'Minh Long',
+            "phone" => '0999999999',
+            "email" => 'deocomate@gmail.com',
+            "full_name_children" => 'QUang',
+            "date_of_birth" => '2025-08-01',
+            "address" => '19 Hang Thiec',
+            "note" => 'fsdafd'
+        ];
+
+        try {
+            $customerId = DB::table('customers')->insertGetId($validatedData);
+
+            // === BẮT ĐẦU LOGIC GỬI EMAIL ===
+
+            // Lấy thêm tên khóa học để hiển thị trong email
+            if (!empty($validatedData['training_id'])) {
+                $training = DB::table('trainings')->find($validatedData['training_id']);
+                $validatedData['training_title'] = $training ? $training->title : 'Chưa chọn';
+            }
+
+            // Gửi email trong một khối try-catch riêng để không ảnh hưởng đến response của API
+            try {
+                // 1. Gửi email cho khách hàng
+                Mail::to($validatedData['email'])->send(new CustomerRegistrationSuccess($validatedData));
+
+                // 2. Gửi email cho admin (lấy từ file .env)
+                $adminEmail = env('ADMIN_EMAIL_RECIPIENT', config('mail.from.address'));
+                if ($adminEmail) {
+                    Mail::to($adminEmail)->send(new AdminNewCustomerNotification($validatedData));
+                }
+            } catch (Throwable $e) {
+                // Nếu gửi mail lỗi, chỉ ghi log chứ không báo lỗi cho người dùng
+                Log::error('Failed to send registration emails for customer ID ' . $customerId . ': ' . $e->getMessage());
+            }
+
+            // === KẾT THÚC LOGIC GỬI EMAIL ===
+
+        } catch (Throwable $e) {
+            Log::error('API Customer Store Error: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Đã có lỗi xảy ra, không thể lưu thông tin.'
+            ], 500);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Đăng ký thông tin thành công!',
+            'data' => [
+                'customer_id' => $customerId
+            ]
+        ], 201);
+    }
 }
