@@ -19,9 +19,24 @@
                         </ul>
                     </div>
                 @endif
-                <x-inputs.text label="Số điện thoại" name="phone" :value="old('phone', $contactInfo->phone)" />
-                <x-inputs.email label="Email" name="email" :value="old('email', $contactInfo->email)" />
-                <x-inputs.text label="Link Facebook" name="facebook" :value="old('facebook', $contactInfo->facebook)" />
+                {{-- CHANGED: Sắp xếp lại và thêm trường mới --}}
+                <div class="row">
+                    <div class="col-md-6">
+                        <x-inputs.text label="Số điện thoại" name="phone" :value="old('phone', $contactInfo->phone ?? '')" />
+                    </div>
+                    <div class="col-md-6">
+                        <x-inputs.text label="Hotline" name="hotline" :value="old('hotline', $contactInfo->hotline ?? '')" />
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-md-6">
+                        <x-inputs.email label="Email" name="email" :value="old('email', $contactInfo->email ?? '')" />
+                    </div>
+                    <div class="col-md-6">
+                        <x-inputs.text label="Link Zalo" name="zalo" :value="old('zalo', $contactInfo->zalo ?? '')" />
+                    </div>
+                </div>
+                <x-inputs.text label="Link Facebook" name="facebook" :value="old('facebook', $contactInfo->facebook ?? '')" />
             </div>
         </div>
 
@@ -92,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
     addButton.addEventListener('click', function() {
         const newIndex = container.querySelectorAll('.address-item').length;
         let newItemHtml = template.replace(/__INDEX__/g, newIndex);
-        
+
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = newItemHtml;
         const newItem = tempDiv.firstElementChild;

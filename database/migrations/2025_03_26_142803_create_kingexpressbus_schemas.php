@@ -102,8 +102,10 @@ return new class extends Migration {
         Schema::create('contact', function (Blueprint $table) {
             $table->id();
             $table->longText('address');
-            $table->string('phone', 10);
+            $table->string('phone', 20);
+            $table->string('hotline', 50);
             $table->string('email', 50);
+            $table->string('zalo', 50);
             $table->string('facebook', 50);
             $table->timestamps();
         });

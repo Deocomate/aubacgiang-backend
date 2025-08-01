@@ -71,12 +71,23 @@ class KingExpressBusSeeder extends Seeder
         DB::table('contact')->insert([
             [
                 'id' => 1,
-                'address' => '[{"address":"AU Lạng Giang: Số 50.51 khu HDB, tổ dân phố Toàn Mỹ, xã Lạng Giang, tỉnh Bắc Giang. Hotline: 0979 798 426 - 0868234966","googlemap":"<iframe src=\\"https:\\/\\/www.google.com\\/maps\\/embed?pb=!1m18!1m12!1m3!1d3715.4818395422694!2d106.22817431051976!3d21.37092428028343!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31356bc73070c9b3%3A0x7d43afddc5504ba1!2zQ8O0bmcgVHkgVE5ISCBN4buBdCBUaMOgbmggVmlDqm4gVMawIFbhuqNuIFbDoCBYw6J5IEThu7NuZyBUb2FuIE3hu7k!5e0!3m2!1svi!2s!4v1753630197417!5m2!1svi!2s\\" width=\\"600\\" height=\\"450\\" style=\\"border:0;\\" allowfullscreen=\\"\\" loading=\\"lazy\\" referrerpolicy=\\"no-referrer-when-downgrade\\"><\\/iframe>"},{"address":"AU Bắc Giang: Tầng 1, nhà B, kí túc xá sinh viên, đường Hoàng Văn Thụ, phường Bắc Giang, tỉnh Bắc Giang Hotline: 0979 798 426 - ZALO: 0962 435 369","googlemap":"<iframe src=\\"https:\\/\\/www.google.com\\/maps\\/embed?pb=!1m18!1m12!1m3!1d3717.6938145474705!2d106.21017691051715!3d21.283584280348666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31356da5c23132b3%3A0xb9acbbfb694a6a4a!2zS8O9IHTDumMgeMOhIFNpbmggdmnDqm4gQuG6r2MgR2lhbmc!5e0!3m2!1svi!2s!4v1753630275516!5m2!1svi!2s\\" width=\\"600\\" height=\\"450\\" style=\\"border:0;\\" allowfullscreen=\\"\\" loading=\\"lazy\\" referrerpolicy=\\"no-referrer-when-downgrade\\"><\\/iframe>"}]',
+                'address' => json_encode([
+                    [
+                        "address" => "AU Lạng Giang: Số 50.51 khu HDB, tổ dân phố Toàn Mỹ, xã Lạng Giang, tỉnh Bắc Giang.",
+                        "googlemap" => "" // Placeholder
+                    ],
+                    [
+                        "address" => "AU Bắc Giang: Tầng 1, nhà B, kí túc xá sinh viên, đường Hoàng Văn Thụ, phường Bắc Giang, tỉnh Bắc Giang",
+                        "googlemap" => "" // Placeholder
+                    ]
+                ]),
                 'phone' => '0979798426',
+                'hotline' => '0979 798 426 - 0868234966',
                 'email' => 'aubacgiang@gmail.com',
+                'zalo' => '0962435369',
                 'facebook' => 'https://web.facebook.com',
-                'created_at' => null,
-                'updated_at' => '2025-07-27 15:31:21',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
         ]);
 
@@ -89,8 +100,8 @@ class KingExpressBusSeeder extends Seeder
                 'fags' => '[{"question":"Trung tâm có lớp học thử miễn phí không?","answer":"Có, chúng tôi có các buổi học thử định kỳ. Vui lòng để lại thông tin để được tư vấn lịch học gần nhất."},{"question":"Lộ trình học cho bé được xây dựng như thế nào?","answer":"Mỗi học viên sẽ được kiểm tra đầu vào và tư vấn lộ trình cá nhân hóa để đảm bảo hiệu quả học tập tốt nhất."},{"question":"Đội ngũ giáo viên của trung tâm có trình độ như thế nào?","answer":"100% giáo viên tại AU English có bằng cấp sư phạm, chứng chỉ giảng dạy quốc tế (TESOL\\/IELTS) và nhiều năm kinh nghiệm."}]',
                 'images' => '["\\/userfiles\\/images\\/R5AT4240.jpg","\\/userfiles\\/images\\/R5AT4246.jpg","\\/userfiles\\/images\\/R5AT4255.jpg"]',
                 'link_youtubes' => '["https:\\/\\/www.youtube.com\\/watch?v=fXXcJJENN9U","https:\\/\\/www.youtube.com\\/watch?v=BaR4iCqJFWk"]',
-                'created_at' => '2025-07 -21 03:53:45',
-                'updated_at' => '2025-07-21 05:40:36',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
         ]);
 
@@ -309,12 +320,6 @@ class KingExpressBusSeeder extends Seeder
 
         // Seed 'menus' table based on provided JSON structure
         DB::table('menus')->insert([
-            // Static links
-            ['id' => 1, 'name' => 'Trang chủ', 'url' => '/', 'priority' => 1, 'parent_id' => null, 'created_at' => '2025-07-27 14:07:40', 'updated_at' => '2025-07-27 14:07:40'],
-            ['id' => 4, 'name' => 'Đội ngũ giáo viên', 'url' => '/teachers', 'priority' => 4, 'parent_id' => null, 'created_at' => '2025-07-27 14:10:28', 'updated_at' => '2025-07-27 14:23:13'],
-            ['id' => 5, 'name' => 'Thư Viện AU', 'url' => '/parents-corner', 'priority' => 5, 'parent_id' => null, 'created_at' => '2025-07-27 14:10:55', 'updated_at' => '2025-07-27 14:23:16'],
-            ['id' => 6, 'name' => 'Liên hệ', 'url' => '/contact', 'priority' => 6, 'parent_id' => null, 'created_at' => '2025-07-27 14:11:17', 'updated_at' => '2025-07-27 14:23:20'],
-
             // Dynamic links from JSON
             [
                 'id' => 2,
