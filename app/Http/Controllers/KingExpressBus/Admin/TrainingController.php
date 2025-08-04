@@ -35,32 +35,16 @@ class TrainingController extends Controller
 
     public function store(Request $request)
     {
-        $curriculum = $request->input('curriculum', []);
-        if (is_array($curriculum)) {
-            $curriculum = array_filter($curriculum, function ($item) {
-                return !empty($item['module']) && !empty($item['content']);
-            });
-            $request->merge(['curriculum' => array_values($curriculum)]);
-        }
-
         $rules = [
             'title' => 'required|string|max:255|unique:trainings,title',
             'priority' => 'required|integer|min:0',
             'age' => 'required|string|max:255',
             'description' => 'required|string',
             'thumbnail' => 'required|string|max:255',
-            'duration' => 'required|string|max:255',
             'outcome' => 'required|string',
             'method' => 'required|string|max:255',
-            'speaking' => 'required|string',
-            'listening' => 'required|string',
-            'reading' => 'required|string',
-            'writing' => 'required|string',
             'content' => 'nullable|string',
             'images' => 'nullable|array',
-            'curriculum' => 'nullable|array',
-            'curriculum.*.module' => 'required|string|max:255',
-            'curriculum.*.content' => 'required|string',
             'youtube_review_link' => 'nullable|url|max:255',
         ];
 
@@ -72,15 +56,8 @@ class TrainingController extends Controller
             'age' => 'độ tuổi',
             'description' => 'mô tả ngắn',
             'thumbnail' => 'ảnh đại diện',
-            'duration' => 'thời lượng',
             'outcome' => 'kết quả đầu ra',
             'method' => 'phương pháp giảng dạy',
-            'speaking' => 'kỹ năng Speaking',
-            'listening' => 'kỹ năng Listening',
-            'reading' => 'kỹ năng Reading',
-            'writing' => 'kỹ năng Writing',
-            'curriculum.*.module' => 'tên học phần',
-            'curriculum.*.content' => 'nội dung học phần',
             'youtube_review_link' => 'link YouTube review',
         ]);
 
@@ -92,7 +69,6 @@ class TrainingController extends Controller
         $validated['created_at'] = now();
         $validated['updated_at'] = now();
         $validated['images'] = json_encode($request->input('images', []));
-        $validated['curriculum'] = json_encode($request->input('curriculum', []));
 
         $validated['slug'] = Str::slug($validated['title']);
         $id = DB::table('trainings')->insertGetId($validated);
@@ -112,7 +88,6 @@ class TrainingController extends Controller
         }
 
         $training->images = json_decode($training->images, true) ?? [];
-        $training->curriculum = json_decode($training->curriculum, true) ?? [];
 
         return view('kingexpressbus.admin.modules.training.createOrEdit', compact('training'));
     }
@@ -124,32 +99,16 @@ class TrainingController extends Controller
             abort(404);
         }
 
-        $curriculum = $request->input('curriculum', []);
-        if (is_array($curriculum)) {
-            $curriculum = array_filter($curriculum, function ($item) {
-                return !empty($item['module']) && !empty($item['content']);
-            });
-            $request->merge(['curriculum' => array_values($curriculum)]);
-        }
-
         $rules = [
             'title' => 'required|string|max:255|unique:trainings,title,' . $id,
             'priority' => 'required|integer|min:0',
             'age' => 'required|string|max:255',
             'description' => 'required|string',
             'thumbnail' => 'required|string|max:255',
-            'duration' => 'required|string|max:255',
             'outcome' => 'required|string',
             'method' => 'required|string|max:255',
-            'speaking' => 'required|string',
-            'listening' => 'required|string',
-            'reading' => 'required|string',
-            'writing' => 'required|string',
             'content' => 'nullable|string',
             'images' => 'nullable|array',
-            'curriculum' => 'nullable|array',
-            'curriculum.*.module' => 'required|string|max:255',
-            'curriculum.*.content' => 'required|string',
             'youtube_review_link' => 'nullable|url|max:255',
         ];
 
@@ -161,15 +120,8 @@ class TrainingController extends Controller
             'age' => 'độ tuổi',
             'description' => 'mô tả ngắn',
             'thumbnail' => 'ảnh đại diện',
-            'duration' => 'thời lượng',
             'outcome' => 'kết quả đầu ra',
             'method' => 'phương pháp giảng dạy',
-            'speaking' => 'kỹ năng Speaking',
-            'listening' => 'kỹ năng Listening',
-            'reading' => 'kỹ năng Reading',
-            'writing' => 'kỹ năng Writing',
-            'curriculum.*.module' => 'tên học phần',
-            'curriculum.*.content' => 'nội dung học phần',
             'youtube_review_link' => 'link YouTube review',
         ]);
 
@@ -184,7 +136,6 @@ class TrainingController extends Controller
         }
 
         $validated['images'] = json_encode($request->input('images', []));
-        $validated['curriculum'] = json_encode($request->input('curriculum', []));
         $validated['updated_at'] = now();
 
         DB::table('trainings')->where('id', $id)->update($validated);
@@ -214,7 +165,7 @@ class TrainingController extends Controller
         $pageSize = $request->query('pageSize', 10);
 
         $paginator = DB::table('trainings')
-            ->select('id', 'title', 'slug', 'age', 'description', 'thumbnail', 'duration', 'youtube_review_link')
+            ->select('id', 'title', 'slug', 'age', 'description', 'thumbnail', 'youtube_review_link')
             ->orderBy('priority', 'asc')
             ->orderBy('title', 'asc')
             ->paginate($pageSize);
@@ -254,8 +205,6 @@ class TrainingController extends Controller
                 return url($path);
             }, $training->images);
         }
-
-        $training->curriculum = json_decode($training->curriculum, true) ?? [];
 
         return response()->json(['success' => true, 'data' => $training]);
     }

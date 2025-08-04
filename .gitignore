@@ -23,3 +23,6 @@ yarn-error.log
 /.zed
 /.vscode
 /.codebase
+
+# Added by CodebaseTracker
+.codebase/

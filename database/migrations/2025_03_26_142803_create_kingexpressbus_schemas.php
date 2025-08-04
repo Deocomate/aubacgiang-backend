@@ -47,16 +47,10 @@ return new class extends Migration {
             $table->string('age');
             $table->longText('description');
             $table->string('thumbnail');
-            $table->string('duration');
             $table->string('outcome');
             $table->string('method');
-            $table->text('speaking');
-            $table->text('listening');
-            $table->text('reading');
-            $table->text('writing');
             $table->longText('content')->nullable();
             $table->text('images')->nullable();
-            $table->longText('curriculum')->nullable();
             $table->text('youtube_review_link')->nullable();
             $table->timestamps();
         });
