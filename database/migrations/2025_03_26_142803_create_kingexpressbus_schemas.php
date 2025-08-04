@@ -46,7 +46,7 @@ return new class extends Migration {
             $table->string('title');
             $table->string('age');
             $table->longText('description');
-            $table->string('thumbnail');
+            $table->string('thumbnail')->nullable();
             $table->string('outcome');
             $table->string('method');
             $table->longText('content')->nullable();
