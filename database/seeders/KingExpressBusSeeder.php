@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class EnglishCenterSeeder extends Seeder
+class KingExpressBusSeeder extends Seeder
 {
     /**
      * Seed the application's database.
