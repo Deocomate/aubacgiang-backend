@@ -39,9 +39,9 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255|unique:news,title',
-            'excerpt' => 'required|string|max:500',
-            'thumbnail' => 'required|string|max:255',
+            'title' => 'required|string|max:1000|unique:news,title',
+            'excerpt' => 'required|string|max:1000',
+            'thumbnail' => 'required|string|max:1000',
             'category_id' => 'required|exists:categories,id',
             'content' => 'required|string',
         ]);
@@ -87,9 +87,9 @@ class NewsController extends Controller
         $old_category_id = $news->category_id;
 
         $validated = $request->validate([
-            'title' => 'required|string|max:255|unique:news,title,' . $id,
-            'excerpt' => 'required|string|max:500',
-            'thumbnail' => 'required|string|max:255',
+            'title' => 'required|string|max:1000|unique:news,title,' . $id,
+            'excerpt' => 'required|string|max:1000',
+            'thumbnail' => 'required|string|max:1000',
             'category_id' => 'required|exists:categories,id',
             'content' => 'required|string',
         ]);
