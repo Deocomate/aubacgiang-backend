@@ -1,9 +1,6 @@
 # --- Laravel Core ---
 /vendor
-/node_modules
 /public/storage
-/public/build
-/public/hot
 /storage/*.key
 /storage/pail
 /bootstrap/cache/*
@@ -40,8 +37,6 @@
 Thumbs.db
 Homestead.json
 Homestead.yaml
-npm-debug.log
-yarn-error.log
 
 # --- Project-Specific Tools ---
 /.codebase

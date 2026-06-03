@@ -11,7 +11,7 @@ Hệ thống quản trị nội dung (CMS) và quản lý thông tin học viên
 *   **Cơ sở dữ liệu**: MySQL / MariaDB
 *   **Giao diện quản trị**: AdminLTE 3 (Bootstrap 4)
 *   **Trình biên tập nội dung**: CKEditor 5 kết hợp CKFinder 3 (Quản lý file & hình ảnh)
-*   **Quản lý thư viện**: Composer (PHP) & NPM (JavaScript)
+*   **Quản lý thư viện**: Composer (PHP)
 
 ---
 
@@ -42,12 +42,6 @@ cd <project_directory>
 Cài đặt các gói thư viện PHP qua Composer:
 ```bash
 composer install
-```
-
-Cài đặt và xây dựng các tài nguyên CSS/JS:
-```bash
-npm install
-npm run build
 ```
 
 ### Bước 3.3: Thiết lập cấu hình môi trường
