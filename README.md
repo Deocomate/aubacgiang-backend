@@ -1,66 +1,121 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# A&U English Center - Admin Portal
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Hệ thống quản trị nội dung (CMS) và quản lý thông tin học viên dành cho Trung tâm Anh ngữ A&U (phân hệ `admin.aubacgiang.edu.vn`). Hệ thống được xây dựng trên nền tảng framework Laravel, cung cấp các công cụ quản lý khóa đào tạo, đội ngũ giáo viên, tin tức sự kiện, danh mục tài liệu và thông tin đăng ký tư vấn của khách hàng.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 1. Công nghệ sử dụng
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+*   **Backend Framework**: Laravel 12.x
+*   **Ngôn ngữ lập trình**: PHP ^8.2
+*   **Cơ sở dữ liệu**: MySQL / MariaDB
+*   **Giao diện quản trị**: AdminLTE 3 (Bootstrap 4)
+*   **Trình biên tập nội dung**: CKEditor 5 kết hợp CKFinder 3 (Quản lý file & hình ảnh)
+*   **Quản lý thư viện**: Composer (PHP) & NPM (JavaScript)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 2. Các chức năng chính của hệ thống
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+*   **Quản lý Trang chủ (Dashboard)**: Cấu hình linh hoạt thông tin banner, khối số liệu thống kê hoạt động, câu hỏi thường gặp (FAQs), và thư viện hình ảnh/video nổi bật.
+*   **Quản lý Menu**: Cho phép tùy biến kéo thả sơ đồ liên kết (Nestable) đa cấp hỗ trợ điều hướng trên giao diện Client.
+*   **Quản lý Đào tạo**: Thiết lập thông tin chi tiết về các khóa học (độ tuổi, mô tả ngắn, kết quả đầu ra, phương pháp giảng dạy, học liệu mẫu).
+*   **Quản lý Giáo viên**: Quản lý hồ sơ, quốc tịch, bằng cấp chứng chỉ, ảnh đại diện và tiểu sử chuyên môn.
+*   **Quản lý Tin tức**: Viết bài, phân chia danh mục tin tức và đếm lượt xem bài viết.
+*   **Quản lý Khách hàng**: Tiếp nhận danh sách đăng ký tư vấn từ các biểu mẫu đăng ký trực tuyến, cập nhật trạng thái xử lý hồ sơ (`pending`, `confirmed`, `cancelled`).
+*   **Quản lý Tài liệu**: Đăng tải và phân phối các tệp tin tài liệu học tập PDF/Word thông qua CKFinder.
+*   **Quản lý Liên hệ**: Cấu hình địa chỉ các chi nhánh cùng bản đồ nhúng và các liên kết mạng xã hội (Facebook, Zalo, YouTube).
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 3. Hướng dẫn cài đặt dự án
 
-## Laravel Sponsors
+Để thiết lập ứng dụng chạy dưới môi trường cục bộ (Local Development), vui lòng thực hiện các bước sau:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Bước 3.1: Nhân bản dự án từ Repository
+```bash
+git clone <repository_url>
+cd <project_directory>
+```
 
-### Premium Partners
+### Bước 3.2: Cài đặt các thư viện phụ thuộc (Dependencies)
+Cài đặt các gói thư viện PHP qua Composer:
+```bash
+composer install
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Cài đặt và xây dựng các tài nguyên CSS/JS:
+```bash
+npm install
+npm run build
+```
 
-## Contributing
+### Bước 3.3: Thiết lập cấu hình môi trường
+Sao chép cấu hình từ tệp mẫu `.env.example`:
+```bash
+cp .env.example .env
+```
+Mở tệp `.env` vừa tạo và chỉnh sửa các thông số kết nối Cơ sở dữ liệu cho phù hợp với môi trường của bạn:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=ten_database_cua_ban
+DB_USERNAME=root
+DB_PASSWORD=your_password
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Đồng thời, cấu hình thông tin máy chủ gửi mail SMTP (nếu muốn thử nghiệm chức năng gửi mail tự động khi có khách hàng đăng ký):
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=your_email@gmail.com
+MAIL_PASSWORD=your_app_password
+ADMIN_EMAIL_RECIPIENT=email_nhan_thong_bao@example.com
+```
 
-## Code of Conduct
+### Bước 3.4: Tạo Khóa ứng dụng (Application Key)
+```bash
+php artisan key:generate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Bước 3.5: Tạo cấu trúc bảng và nạp dữ liệu mẫu (Migrations & Seeders)
+Thực hiện chạy toàn bộ tệp migration kèm theo nạp dữ liệu khởi tạo của phân hệ Trung tâm Anh ngữ:
+```bash
+php artisan migrate --seed
+```
+*Lưu ý: Quá trình này sẽ chạy lớp `EnglishCenterSeeder` để nạp sẵn dữ liệu cấu hình trang chủ, các khóa học demo, danh sách giáo viên và thông tin liên hệ ban đầu.*
 
-## Security Vulnerabilities
+### Bước 3.6: Tạo liên kết thư mục lưu trữ (Storage Link)
+Tạo liên kết để hiển thị các tệp tin tải lên từ hệ thống quản trị ra thư mục public:
+```bash
+php artisan storage:link
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 4. Khởi chạy ứng dụng
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Chạy máy chủ PHP nội bộ:
+```bash
+php artisan serve
+```
+Ứng dụng sẽ hoạt động tại địa chỉ mặc định: `http://127.0.0.1:8000`.
+
+Truy cập trang quản trị thông qua liên kết: `http://127.0.0.1:8000/admin/login`
+
+### Thông tin đăng nhập quản trị viên mặc định:
+*   **Email**: `root@gmail.com`
+*   **Mật khẩu**: `password`
+
+---
+
+## 5. Quy chuẩn phát triển mã nguồn trong dự án
+
+*   **Tạo Slug**: Dự án sử dụng `App\Http\Traits\SlugGenerator` để đồng bộ hóa việc tạo slug thân thiện cho URL theo định dạng `tieu-de-bai-viet-id` nhằm tránh trùng lặp thông tin trong cơ sở dữ liệu.
+*   **Quản lý File**: Các đầu vào chọn ảnh hoặc file trong hệ thống CMS sử dụng bộ Blade Components tương thích cao với popup CKFinder:
+    *   `<x-inputs.image-link>`: Chọn một ảnh đơn.
+    *   `<x-inputs.image-link-array>`: Chọn và quản lý danh sách nhiều ảnh.
+    *   `<x-inputs.file-link>`: Chọn các định dạng tài liệu học tập (.pdf, .docx).
+```,Description:
